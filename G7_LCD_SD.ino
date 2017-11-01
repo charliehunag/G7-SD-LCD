@@ -20,18 +20,14 @@ long pmat100=0;
 char buf[50];
 
 void setup() {
-  // put your setup code here, to run once:
  
   Serial.begin(9600);
   Serial1.begin(9600);
   lcd.begin(16, 2);           
   lcd.backlight();               
   SD.begin(4);
-  Serial.println("IR test!");
-  Serial.print("Initializing SD card...");
 
   if(!SD.begin(4)){
-    Serial.println("SD card failed!");
     return;
   }
   Serial.println("SD card success!");
@@ -117,6 +113,7 @@ void loop() {
   Serial.println();
   
   myFile=SD.open("datalog.txt",FILE_WRITE);
+  delay(5000);
   
   if(myFile){
     myFile.print("atmosphere, PM2.5=");
@@ -134,6 +131,6 @@ void loop() {
   else{
     Serial.println("error in opening datalog.txt");
   }
-  delay(10000);
+  delay(1000);
 }
 
