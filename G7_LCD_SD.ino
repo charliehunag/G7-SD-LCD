@@ -39,9 +39,9 @@ void setup() {
   if(SD.exists("DATALOG.txt")){
     Serial.println("datalog.txt exists");
     }
-    else{
-      Serial.println("datalog.txt not exists");
-      Serial.println("creating datalog.txt");
+   else{
+     Serial.println("datalog.txt not exists");
+     Serial.println("creating datalog.txt");
     }
    
 }
