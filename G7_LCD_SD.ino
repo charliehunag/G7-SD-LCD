@@ -23,27 +23,27 @@ void setup() {
  
   Serial.begin(9600);
   Serial1.begin(9600);
-  lcd.begin(16, 2);           
-  lcd.backlight();               
+  lcd.begin(16, 2);           // 初始化 LCD，一行 16 的字元，共 2 行
+  lcd.backlight();             // 開啟背光  
+  pinMode(10,OUTPUT);
+  const int chipSelect = 4;
+  Sd2Card card;
   SD.begin(4);
-
-  if(!SD.begin(4)){
-    return;
-  }
-  Serial.println("SD card success!");
-
-  if(SD.exists("datalog.txt")){
-    Serial.println("datalog.txt exists.");
-  }
-  else{
-    Serial.println("datalog.txt not exists.");
-  }
-
-  Serial.println("Creating datalog.txt...");
-
-
-  myFile=SD.open("datalog.txt",FILE_WRITE);
-
+  Serial.print("\nInitializing SD card...");
+    if(!card.init(SPI_HALF_SPEED, chipSelect)) {
+      Serial.println("failed");
+      return;
+    }
+    Serial.println("success");
+  
+  if(SD.exists("DATALOG.txt")){
+    Serial.println("datalog.txt exists");
+    }
+    else{
+      Serial.println("datalog.txt not exists");
+      Serial.println("creating datalog.txt");
+    }
+   
 }
 
 void loop() {
